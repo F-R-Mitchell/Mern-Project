@@ -20,7 +20,7 @@ import cookieParser from 'cookie-parser'
 import connectDB from './db/connect.js'
 import authenticateUser from './middleware/auth.js'
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'))
 }
 
