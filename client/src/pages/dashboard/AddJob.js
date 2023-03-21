@@ -10,6 +10,7 @@ const AddJob = () => {
     displayAlert,
     position,
     company,
+    salary,
     jobLocation,
     jobType,
     jobTypeOptions,
@@ -51,6 +52,12 @@ const AddJob = () => {
             handleChange={handleJobInput}
           />
 
+          <FormRow
+            type="number"
+            name="salary"
+            value={salary}
+            handleChange={handleJobInput}
+          />
           <FormRow
             type="text"
             name="company"

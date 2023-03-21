@@ -51,6 +51,7 @@ const initialState = {
   jobType: 'full-time',
   statusOptions: ['pending', 'interview', 'declined'],
   status: 'pending',
+  salary: 0,
   jobs: [],
   totalJobs: 0,
   page: 1,
@@ -163,13 +164,14 @@ const AppProvider = ({ children }) => {
   const createJob = async () => {
     dispatch({ type: CREATE_JOB_BEGIN })
     try {
-      const { position, company, jobLocation, jobType, status } = state
+      const { position, company, jobLocation, jobType, status, salary } = state
       await authFetch.post('/jobs', {
         company,
         position,
         jobLocation,
         jobType,
         status,
+        salary,
       })
       dispatch({ type: CREATE_JOB_SUCCESS })
       dispatch({ type: CLEAR_VALUES })
@@ -214,7 +216,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: EDIT_JOB_BEGIN })
 
     try {
-      const { position, company, jobLocation, jobType, status } = state
+      const { position, company, jobLocation, jobType, status, salary } = state
 
       await authFetch.patch(`/jobs/${state.editJobId}`, {
         position,
@@ -222,6 +224,7 @@ const AppProvider = ({ children }) => {
         jobLocation,
         jobType,
         status,
+        salary,
       })
       dispatch({ type: EDIT_JOB_SUCCESS })
       dispatch({ type: CLEAR_VALUES })

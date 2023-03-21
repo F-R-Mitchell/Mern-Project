@@ -33,6 +33,10 @@ const JobSchema = new mongoose.Schema(
       ref: 'User',
       required: [false, 'Please provide user'],
     },
+    salary: {
+      type: Number,
+      required: [false, 'Please provide a salary'],
+    },
   },
   { timestamps: true }
 )
