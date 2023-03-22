@@ -5,6 +5,9 @@ import { useState, useMemo } from 'react'
 
 const SearchContainer = () => {
   const [localSearch, setLocalSearch] = useState('')
+  const [min, setMin] = useState('')
+  const [max, setMax] = useState('')
+
   const {
     isLoading,
     searchStatus,
@@ -20,17 +23,20 @@ const SearchContainer = () => {
   const handleSearch = (e) => {
     handleChange({ name: e.target.name, value: e.target.value })
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setLocalSearch('')
+    setMin('')
+    setMax('')
     clearFilters()
   }
 
   const debounce = () => {
     let timeoutID
     return (e) => {
-      setLocalSearch(e.target.value)
+      e.target.name === 'search' ? setLocalSearch(e.target.value) : e.target.name === 'minSalary' ? setMin(e.target.value) : setMax(e.target.value)
+
       clearTimeout(timeoutID)
       timeoutID = setTimeout(() => {
         handleChange({ name: e.target.name, value: e.target.value })
@@ -71,6 +77,18 @@ const SearchContainer = () => {
             value={sort}
             handleChange={handleSearch}
             list={sortOptions}
+          />
+          <FormRow
+            type="text"
+            name="minSalary"
+            value={min ?? ''}
+            handleChange={optimizeDebounce}
+          />
+          <FormRow
+            type="text"
+            name="maxSalary"
+            value={max ?? ''}
+            handleChange={optimizeDebounce}
           />
           <button
             className="btn btn-block btn-danger"

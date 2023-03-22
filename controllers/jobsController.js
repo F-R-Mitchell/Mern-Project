@@ -16,13 +16,12 @@ export const createJob = async (req, res) => {
 }
 
 export const getAllJobs = async (req, res) => {
-  const { search, status, jobType, sort } = req.query
+  const { search, status, jobType, sort, minSalary, maxSalary } = req.query
 
   const queryObject = {
     createdBy: req.user.userId,
   }
-
-  if (status && status !== 'all') {
+  if (status) {
     queryObject.status = status
   }
   if (jobType && jobType !== 'all') {
@@ -30,6 +29,24 @@ export const getAllJobs = async (req, res) => {
   }
   if (search) {
     queryObject.position = { $regex: search, $options: 'i' }
+  }
+  if (minSalary || maxSalary) {
+    queryObject.$and = [
+      {
+        $and: [
+          {
+            salary: {
+              $gte: minSalary || 10000,
+            },
+          },
+          {
+            salary: {
+              $lte: maxSalary || 100000,
+            },
+          },
+        ],
+      },
+    ]
   }
 
   let result = Job.find(queryObject)
@@ -51,7 +68,6 @@ export const getAllJobs = async (req, res) => {
   const page = Number(req.query.page) || 1
   const skip = (page - 1) * limit
   result = result.skip(skip).limit(limit)
-
   const jobs = await result
   const totalJobs = await Job.countDocuments(queryObject)
   const numOfPages = Math.ceil(totalJobs / limit)

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import {
   CHANGE_PAGE,
   CLEAR_FILTERS,
@@ -61,6 +61,8 @@ const initialState = {
   search: '',
   searchStatus: 'all',
   searchType: 'all',
+  minSalary: 0,
+  maxSalary: 0,
   sort: 'latest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 }
@@ -69,6 +71,7 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
   const authFetch = axios.create({
     baseURL: '/api/v1',
   })
@@ -188,11 +191,25 @@ const AppProvider = ({ children }) => {
   }
 
   const getJobs = async () => {
-    const { page, search, searchStatus, searchType, sort } = state
+    const {
+      page,
+      search,
+      searchStatus,
+      searchType,
+      sort,
+      minSalary,
+      maxSalary,
+    } = state
     let url = `/jobs?page=${page}status=${searchStatus}&jobType=${searchType}&sort=${sort}`
 
     if (search) {
       url = url + `&search=${search}`
+    }
+    if (minSalary) {
+      url = url + `&minSalary=${minSalary}`
+    }
+    if (maxSalary) {
+      url = url + `&maxSalary=${maxSalary}`
     }
     dispatch({ type: GET_JOBS_BEGIN })
     try {
@@ -275,6 +292,7 @@ const AppProvider = ({ children }) => {
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS })
   }
+
   const changePage = (page) => {
     dispatch({ type: CHANGE_PAGE, payload: { page } })
   }
