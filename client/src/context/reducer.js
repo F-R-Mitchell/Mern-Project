@@ -232,6 +232,8 @@ const reducer = (state, action) => {
       searchStatus: 'all',
       searchType: 'all',
       sort: 'latest',
+      minSalary: '',
+      maxSalary: '',
     }
   }
   if (action.type === CHANGE_PAGE) {

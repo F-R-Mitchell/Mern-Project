@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer,  } from 'react'
 import {
   CHANGE_PAGE,
   CLEAR_FILTERS,
@@ -313,6 +313,7 @@ const AppProvider = ({ children }) => {
   }
   useEffect(() => {
     getCurrentUser()
+  // eslint-disable-next-line
   }, [])
   return (
     <AppContext.Provider
