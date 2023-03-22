@@ -21,7 +21,7 @@ export const getAllJobs = async (req, res) => {
   const queryObject = {
     createdBy: req.user.userId,
   }
-  if (status) {
+  if (status && status != 'all') {
     queryObject.status = status
   }
   if (jobType && jobType !== 'all') {

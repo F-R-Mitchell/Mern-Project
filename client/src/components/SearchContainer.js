@@ -80,12 +80,14 @@ const SearchContainer = () => {
           />
           <FormRow
             type="text"
+            labelText="minimum salary"
             name="minSalary"
             value={min ?? ''}
             handleChange={optimizeDebounce}
           />
           <FormRow
             type="text"
+            labelText="maximum salary"
             name="maxSalary"
             value={max ?? ''}
             handleChange={optimizeDebounce}

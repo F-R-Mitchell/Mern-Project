@@ -18,12 +18,14 @@ const JobsContainer = () => {
     searchType,
     sort,
     showAlert,
+    minSalary,
+    maxSalary,
   } = useAppContext()
 
   useEffect(() => {
     getJobs()
     // eslint-disable-next-line
-  }, [page, search, searchStatus, searchType, sort])
+  }, [page, search, searchStatus, searchType, sort, minSalary, maxSalary])
 
   if (isLoading) {
     return (
