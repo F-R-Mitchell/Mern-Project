@@ -10,7 +10,7 @@ import SearchContainer from './SearchContainer'
 import StatsContainer from './StatsContainer'
 import ChartsContainer from './ChartsContainer'
 import Loading from './Loading'
-
+import NewsContainer from './NewsContainer'
 export {
   Logo,
   FormRow,
@@ -24,4 +24,5 @@ export {
   StatsContainer,
   ChartsContainer,
   Loading,
+  NewsContainer,
 }

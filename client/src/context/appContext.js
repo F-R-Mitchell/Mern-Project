@@ -16,6 +16,7 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
+  GET_NEWS_BEGIN,
   HANDLE_CHANGE,
   HIDE_ALERT,
   LOGOUT_USER,
@@ -56,6 +57,7 @@ const initialState = {
   totalJobs: 0,
   page: 1,
   numOfPages: 1,
+  numOfNewsPages: 1,
   stats: {},
   monthlyApplications: [],
   search: '',
@@ -311,6 +313,7 @@ const AppProvider = ({ children }) => {
       logoutUser()
     }
   }
+
   useEffect(() => {
     getCurrentUser()
   // eslint-disable-next-line

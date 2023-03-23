@@ -319,3 +319,6 @@ ul {
     margin-right: 0.5rem;
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

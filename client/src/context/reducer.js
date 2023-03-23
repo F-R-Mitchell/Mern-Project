@@ -251,6 +251,7 @@ const reducer = (state, action) => {
       jobLocation: action.payload.location,
     }
   }
+
   throw new Error(`Something went wrong: ${action.type}`)
 }
 export default reducer
