@@ -6,10 +6,11 @@ const NewsContainer = ({ categorySearch, companySearch }) => {
   const [newsArticles, setNewsArticles] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [status, setStatus] = useState('')
+
   const newsArticleAPI = (categorySearch, companySearch) => {
     let url = `https://newsapi.org/v2/top-headlines?country=us&category=${
       categorySearch ?? 'general'
-    }&apiKey=9fc5b7e85c294785a69f7147a00db595`
+    }&apiKey=${process.env.REACT_APP_API_KEY}`
     setIsLoading(true)
     try {
       fetch(url)
