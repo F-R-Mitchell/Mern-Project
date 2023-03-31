@@ -24,7 +24,7 @@ const NewsArticle = ({ article }) => {
           id="gridId"
         >
           {article.map((item) => (
-            <div className="bigDiv">
+            <div key = {item.id}>
               {checkImage(item.urlToImage) ? (
                 <div
                   key={item.url}
@@ -57,7 +57,7 @@ const NewsArticle = ({ article }) => {
                   </div>
                 </div>
               ) : (
-                console.log('documnet', document.getElementById('#gridId'))
+                console.log('documnet', document.getElementById('gridId'))
               )}
             </div>
           ))}

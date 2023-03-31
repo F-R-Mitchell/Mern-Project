@@ -16,6 +16,11 @@ const NewsContainer = ({ categorySearch, companySearch }) => {
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
+          data.articles.forEach((item, i) => {
+            item.id = i + 1
+          })
+          console.log('data', data.articles)
+
           setStatus(data.status)
           setNewsArticles([data.articles])
           setIsLoading(false)
@@ -29,7 +34,7 @@ const NewsContainer = ({ categorySearch, companySearch }) => {
     newsArticleAPI(categorySearch, companySearch)
     // eslint-disable-next-line
   }, [categorySearch, companySearch])
-
+  console.log('newsArticles', newsArticles)
   if (status !== 'ok') {
     console.log('status', status)
     return <div>No Articles to Display</div>
@@ -39,9 +44,9 @@ const NewsContainer = ({ categorySearch, companySearch }) => {
       {isLoading ? (
         <Loading center />
       ) : (
-        newsArticles.map((newsArticle) => {
-          return <NewsArticle article={newsArticle} />
-        })
+        
+          <NewsArticle  article={newsArticles[0]} />
+        
       )}
     </div>
   )
