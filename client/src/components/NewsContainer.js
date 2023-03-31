@@ -9,7 +9,7 @@ const NewsContainer = ({ categorySearch, companySearch }) => {
   const newsArticleAPI = (categorySearch, companySearch) => {
     let url = `https://newsapi.org/v2/top-headlines?country=us&category=${
       categorySearch ?? 'general'
-    }&apiKey=9fc5b7e85c294785a69f7147a00db595`
+    }&apiKey=`
     setIsLoading(true)
     try {
       fetch(url)
