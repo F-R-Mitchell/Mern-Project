@@ -45,7 +45,7 @@ const JobsContainer = () => {
   return (
     <Wrapper>
       {showAlert && <Alert />}
-      <h5>
+      <h5 className=" text-xl">
         {totalJobs} Job{jobs.length > 1 && 's'} found
       </h5>
 

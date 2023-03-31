@@ -22,6 +22,7 @@ const Wrapper = styled.section`
     text-align: center;
   }
   .btn {
+    background: #2cb1bc;
     margin-top: 1rem;
   }
   .member-btn {

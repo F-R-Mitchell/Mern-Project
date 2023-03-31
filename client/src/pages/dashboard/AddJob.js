@@ -41,7 +41,7 @@ const AddJob = () => {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit} className="form">
-        <h3> {isEditing ? 'Edit Job' : 'Add Job'}</h3>
+        <h5 className="text-3xl"> {isEditing ? 'Edit Job' : 'Add Job'}</h5>
         {showAlert && <Alert />}
         <div className="form-center">
           <FormRow
@@ -88,7 +88,7 @@ const AddJob = () => {
 
           <div className="btn-container">
             <button
-              className="btn btn-block submit-btn"
+              className="btn btn-block submit-btn bg-[#2cb1bc]"
               type="submit"
               onClick={handleSubmit}
               disabled={isLoading}
@@ -96,7 +96,7 @@ const AddJob = () => {
               Submit
             </button>
             <button
-              className="btn btn-block clear-btn"
+              className="btn btn-block btn-danger"
               // type="submit"
               onClick={(e) => {
                 e.preventDefault()

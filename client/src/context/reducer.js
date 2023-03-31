@@ -15,6 +15,8 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
+  GET_NEWS_BEGIN,
+  GET_NEWS_SUCCESS,
   HANDLE_CHANGE,
   HIDE_ALERT,
   LOGOUT_USER,
@@ -161,6 +163,19 @@ const reducer = (state, action) => {
       numOfPages: action.payload.numOfPages,
     }
   }
+
+  if (action.type === GET_NEWS_BEGIN) {
+    return { ...state, isLoading: true, showAlert: false }
+  }
+
+  if (action.type === GET_NEWS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      news: action.payload.news,
+    }
+  }
+
   if (action.type === SET_EDIT_JOB) {
     const job = state.jobs.find((job) => job._id === action.payload.id)
     const { _id, position, company, jobLocation, jobType, status, salary } = job

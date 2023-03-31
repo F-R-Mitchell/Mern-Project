@@ -67,6 +67,8 @@ const initialState = {
   maxSalary: 0,
   sort: 'latest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
+  newsTitleSearch:'',
+  newsCompanySearch:''
 }
 
 const AppContext = React.createContext()

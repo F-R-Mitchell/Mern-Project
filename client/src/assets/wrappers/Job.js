@@ -17,6 +17,7 @@ const Wrapper = styled.article`
       letter-spacing: 0;
     }
   }
+
   .main-icon {
     width: 60px;
     height: 60px;
@@ -77,7 +78,6 @@ const Wrapper = styled.article`
     letter-spacing: var(--letterSpacing);
     text-align: center;
     width: 100px;
-    height: 30px;
   }
   footer {
     margin-top: 1rem;
@@ -87,6 +87,7 @@ const Wrapper = styled.article`
     letter-spacing: var(--letterSpacing);
     cursor: pointer;
     height: 30px;
+    vertical-align: top;
   }
   .edit-btn {
     color: var(--green-dark);
@@ -96,6 +97,7 @@ const Wrapper = styled.article`
   .delete-btn {
     color: var(--red-dark);
     background: var(--red-light);
+    line-height: revert;
   }
   &:hover .actions {
     visibility: visible;

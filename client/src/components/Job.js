@@ -28,8 +28,8 @@ const Job = ({
       <header>
         <div className="main-icon">{company.charAt(0)}</div>
         <div className="info">
-          <h5>{position}</h5>
-          <p>{company}</p>
+          <h5 className="text-xl">{position}</h5>
+          <p className="text-lg">{company}</p>
         </div>
       </header>
       <div className="content">

@@ -57,7 +57,9 @@ const Register = () => {
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
-        <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+        <h3 className="text-3xl pb-4">
+          {values.isMember ? 'Login' : 'Register'}
+        </h3>
         {showAlert && <Alert />}
         {!values.isMember && (
           <FormRow
@@ -84,7 +86,7 @@ const Register = () => {
         </button>
         <button
           type="button"
-          className="btn btn-block btn-hipster"
+          className="btn btn-block"
           disabled={isLoading}
           onClick={() => {
             setUpUser({
@@ -97,7 +99,7 @@ const Register = () => {
           {isLoading ? 'Loading...' : 'demo app'}
         </button>
         <p>
-          {!values.isMember ? 'Not a Member Yet?' : 'Already a Member?'}
+          {!values.isMember ? 'Not a Member Yet? ' : 'Already a Member? '}
           <button type="button" onClick={toggleMember} className="member-btn">
             {values.isMember ? 'Register' : 'Login'}
           </button>

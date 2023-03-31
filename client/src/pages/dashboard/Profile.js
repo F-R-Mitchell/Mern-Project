@@ -22,7 +22,7 @@ const Profile = () => {
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
-        <h3>Profile</h3>
+        <h4 className="text-3xl">Profile</h4>
         {showAlert && <Alert />}
         <div className="form-center">
           <FormRow
@@ -50,7 +50,11 @@ const Profile = () => {
             value={location}
             handleChange={(e) => setLocation(e.target.value)}
           />
-          <button className="btn btn-block" type="submit" disabled={isLoading}>
+          <button
+            className="btn btn-block w-1/2 bg-[#2cb1bc]"
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? 'Updating...' : 'Save Changes'}
           </button>
         </div>

@@ -40,10 +40,10 @@ const Wrapper = styled.section`
     }
   }
   .clear-btn {
-    background: var(--grey-500);
+    background: var(--grey-500)
   }
   .clear-btn:hover {
-    background: var(--black);
+    background: var(--black)
   }
   @media (min-width: 992px) {
     .form-center {

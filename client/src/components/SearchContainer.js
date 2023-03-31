@@ -50,7 +50,7 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <form className="form">
-        <h4>Search Form</h4>
+        <h4 className="text-3xl">Search Form</h4>
         <div className="form-center">
           <FormRow
             type="text"
@@ -93,11 +93,11 @@ const SearchContainer = () => {
             handleChange={optimizeDebounce}
           />
           <button
-            className="btn btn-block btn-danger"
+            className="btn btn-block btn-danger w-1/2 mt-3"
             disabled={isLoading}
             onClick={handleSubmit}
           >
-            Clear Filters
+            Clear
           </button>
         </div>
       </form>

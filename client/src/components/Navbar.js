@@ -16,7 +16,7 @@ const Navbar = () => {
         </button>
         <div>
           <Logo />
-          <h3 className="logo-text">Dashboard</h3>
+          <h3 className="logo-text text-4xl">Dashboard</h3>
         </div>
         <div className="btn-container">
           <button
@@ -28,7 +28,11 @@ const Navbar = () => {
             {user?.name}
             <FaCaretDown />
           </button>
-          <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
+          <div
+            className={
+              showLogout ? 'dropdown show-dropdown ' : 'dropdown'
+            }
+          >
             <button type="button" className="dropdown-btn" onClick={logoutUser}>
               Logout
             </button>

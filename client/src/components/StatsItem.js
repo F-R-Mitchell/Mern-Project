@@ -7,7 +7,7 @@ const StatsItem = ({ count, title, icon, color, bcg }) => {
         <span className="count">{count}</span>
         <div className="icon">{icon}</div>
       </header>
-      <h5 className="title">{title}</h5>
+      <h5 className="title text-xl">{title}</h5>
     </Wrapper>
   )
 }

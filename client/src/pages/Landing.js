@@ -15,11 +15,11 @@ const Landing = () => {
           <Logo />
         </nav>
         <div className="container page">
-          <div className="info">
-            <h1>
+          <div className="info ml-40">
+            <h1 className="text-5xl pb-4">
               job <span>Tracking</span> App
             </h1>
-            <p>
+            <p className="text-base pb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris

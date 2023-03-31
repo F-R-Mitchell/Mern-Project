@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import authRouter from './routes/authRoutes.js'
 import jobsRouter from './routes/jobsRoutes.js'
+// import newsRouter from './routes/newsRoutes.js'
 
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -20,6 +21,7 @@ import cookieParser from 'cookie-parser'
 import connectDB from './db/connect.js'
 import authenticateUser from './middleware/auth.js'
 import morgan from 'morgan'
+
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'))
 }
@@ -44,6 +46,8 @@ app.get('/api/v1', (req, res) => {
 app.use('/api/v1/auth', authRouter)
 
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
+
+// app.use('/api/v1/news', newsRouter)
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
