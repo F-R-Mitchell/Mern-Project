@@ -33,6 +33,7 @@ const SearchContainer = () => {
   }
 
   const debounce = () => {
+    
     let timeoutID
     return (e) => {
       e.target.name === 'search' ? setLocalSearch(e.target.value) : e.target.name === 'minSalary' ? setMin(e.target.value) : setMax(e.target.value)

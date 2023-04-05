@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer,  } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import {
   CHANGE_PAGE,
   CLEAR_FILTERS,
@@ -6,6 +6,9 @@ import {
   CREATE_JOB_BEGIN,
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
+  CREATE_TASK_BEGIN,
+  CREATE_TASK_ERROR,
+  CREATE_TASK_SUCCESS,
   DELETE_JOB_BEGIN,
   DELETE_JOB_ERROR,
   DISPLAY_ALERT,
@@ -16,7 +19,8 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
-  GET_NEWS_BEGIN,
+  GET_TASKS_BEGIN,
+  GET_TASKS_SUCCESS,
   HANDLE_CHANGE,
   HIDE_ALERT,
   LOGOUT_USER,
@@ -67,8 +71,9 @@ const initialState = {
   maxSalary: 0,
   sort: 'latest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
-  newsTitleSearch:'',
-  newsCompanySearch:''
+  taskName: '',
+  taskDescription: '',
+  tasks: [],
 }
 
 const AppContext = React.createContext()
@@ -192,6 +197,42 @@ const AppProvider = ({ children }) => {
       })
       hideAlert()
     }
+  }
+
+  const createTask = async () => {
+    dispatch({ type: CREATE_TASK_BEGIN })
+    try {
+      const { taskName, taskDescription } = state
+      await authFetch.post('/jobs/misc', {
+        taskName,
+        taskDescription,
+      })
+      dispatch({ type: CREATE_TASK_SUCCESS })
+      dispatch({ type: CLEAR_VALUES })
+    } catch (error) {
+      if (error.response.status === 401) {
+        return
+      }
+      dispatch({
+        type: CREATE_TASK_ERROR,
+        payload: { msg: error.response.data.message },
+      })
+      hideAlert()
+    }
+  }
+  const getTasks = async () => {
+    dispatch({ type: GET_TASKS_BEGIN })
+    try {
+      const { data } = await authFetch('/jobs/misc')
+      const { tasks } = data
+      dispatch({
+        type: GET_TASKS_SUCCESS,
+        payload: { tasks },
+      })
+    } catch (error) {
+      logoutUser()
+    }
+    hideAlert()
   }
 
   const getJobs = async () => {
@@ -318,7 +359,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getCurrentUser()
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
   return (
     <AppContext.Provider
@@ -339,6 +380,8 @@ const AppProvider = ({ children }) => {
         showStats,
         clearFilters,
         changePage,
+        createTask,
+        getTasks,
       }}
     >
       {children}

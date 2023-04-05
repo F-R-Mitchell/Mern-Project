@@ -97,7 +97,6 @@ const AddJob = () => {
             </button>
             <button
               className="btn btn-block btn-danger"
-              // type="submit"
               onClick={(e) => {
                 e.preventDefault()
                 handleClearJob()

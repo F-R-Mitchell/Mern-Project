@@ -1,5 +1,5 @@
 import { IoBarChartSharp } from 'react-icons/io5'
-import { MdQueryStats } from 'react-icons/md'
+import { MdQueryStats, MdMiscellaneousServices } from 'react-icons/md'
 import { FaWpforms, FaNewspaper } from 'react-icons/fa'
 import { ImProfile } from 'react-icons/im'
 const links = [
@@ -23,15 +23,21 @@ const links = [
   },
   {
     id: 4,
+    text: 'news',
+    path: '/news',
+    icon: <FaNewspaper />,
+  },
+  {
+    id: 5,
     text: 'profile',
     path: '/profile',
     icon: <ImProfile />,
   },
   {
-    id: 5,
-    text: 'news',
-    path: '/news',
-    icon: <FaNewspaper />,
+    id: 6,
+    text: 'misc',
+    path: '/misc',
+    icon: <MdMiscellaneousServices />,
   },
 ]
 export default links

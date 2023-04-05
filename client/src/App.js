@@ -8,6 +8,7 @@ import {
   SharedLayout,
   News,
 } from './pages/dashboard'
+import MiscItems from './pages/dashboard/MiscItems'
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
           <Route index element={<Stats />} />
           <Route path="add-job" element={<AddJob />}></Route>
           <Route path="all-jobs" element={<AllJobs />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
           <Route path="news" element={<News />}></Route>
+          <Route path="misc" element={<MiscItems />}></Route>
+          <Route path="profile" element={<Profile />}></Route>
         </Route>
 
         <Route path="/register" element={<Register />} />

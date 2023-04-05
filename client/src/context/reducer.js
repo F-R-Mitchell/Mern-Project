@@ -5,6 +5,9 @@ import {
   CREATE_JOB_BEGIN,
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
+  CREATE_TASK_BEGIN,
+  CREATE_TASK_ERROR,
+  CREATE_TASK_SUCCESS,
   DELETE_JOB_BEGIN,
   DELETE_JOB_ERROR,
   DISPLAY_ALERT,
@@ -15,8 +18,8 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
-  GET_NEWS_BEGIN,
-  GET_NEWS_SUCCESS,
+  GET_TASKS_BEGIN,
+  GET_TASKS_SUCCESS,
   HANDLE_CHANGE,
   HIDE_ALERT,
   LOGOUT_USER,
@@ -163,16 +166,38 @@ const reducer = (state, action) => {
       numOfPages: action.payload.numOfPages,
     }
   }
-
-  if (action.type === GET_NEWS_BEGIN) {
-    return { ...state, isLoading: true, showAlert: false }
+  if (action.type === CREATE_TASK_BEGIN) {
+    return { ...state, isLoading: true }
   }
 
-  if (action.type === GET_NEWS_SUCCESS) {
+  if (action.type === CREATE_TASK_SUCCESS) {
     return {
       ...state,
       isLoading: false,
-      news: action.payload.news,
+      showAlert: true,
+      alertType: 'success',
+      alertText: `Task Creation Successful!`,
+    }
+  }
+  if (action.type === CREATE_TASK_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === GET_TASKS_BEGIN) {
+    return { ...state, isLoading: true, showAlert: false }
+  }
+
+  if (action.type === GET_TASKS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      tasks:action.payload.tasks
     }
   }
 

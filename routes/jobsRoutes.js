@@ -8,6 +8,7 @@ import {
   deleteJob,
   showStats,
 } from '../controllers/jobsController.js'
+import { createTask, getAllTasks } from '../controllers/taskController.js'
 import authenticateUser from '../middleware/auth.js'
 import testUser from '../middleware/testUser.js'
 
@@ -16,5 +17,7 @@ jobsRouter.route('/').post(testUser, createJob).get(getAllJobs)
 jobsRouter.route('/stats').get(authenticateUser, showStats)
 
 jobsRouter.route('/:id').delete(testUser, deleteJob).patch(testUser, updateJob)
+
+jobsRouter.route('/misc').post(createTask).get(getAllTasks)
 
 export default jobsRouter

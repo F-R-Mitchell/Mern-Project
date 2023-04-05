@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+
+import { useEffect, useMemo } from 'react'
 import Wrapper from '../assets/wrappers/SearchContainer'
 import { useAppContext } from '../context/appContext'
 import FormRow from './FormRow'
@@ -29,10 +30,7 @@ const NewsSearchContainer = ({
   const debounce = () => {
     let timeoutID
     return (e) => {
-
-      
       setCompanySearch(e.target.value)
-      // : setCompanySearch(e.target.value)
       clearTimeout(timeoutID)
       timeoutID = setTimeout(() => {
         handleChange({ name: e.target.name, value: e.target.value })
@@ -41,6 +39,7 @@ const NewsSearchContainer = ({
   }
   // eslint-disable-next-line
   const optimizeDebounce = useMemo(() => debounce(), [])
+
   return (
     <Wrapper>
       <form className="form">
