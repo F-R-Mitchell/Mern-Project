@@ -100,9 +100,7 @@ export const updateJob = async (req, res) => {
 }
 export const deleteJob = async (req, res) => {
   const { id: jobId } = req.params
-
   const job = await Job.findOne({ _id: jobId })
-
   if (!job) {
     throw new NotFoundError(`No job with id : ${jobId}`)
   }

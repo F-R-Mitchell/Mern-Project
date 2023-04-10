@@ -11,6 +11,8 @@ import {
   CREATE_TASK_SUCCESS,
   DELETE_JOB_BEGIN,
   DELETE_JOB_ERROR,
+  DELETE_TASK_BEGIN,
+  DELETE_TASK_ERROR,
   DISPLAY_ALERT,
   EDIT_JOB_BEGIN,
   EDIT_JOB_ERROR,
@@ -234,6 +236,22 @@ const AppProvider = ({ children }) => {
     }
     hideAlert()
   }
+  const deleteTask = async (taskId) => {
+    dispatch({ type: DELETE_TASK_BEGIN })
+    try {
+      await authFetch.delete(`/jobs/misc/${taskId}`)
+      getTasks()
+    } catch (error) {
+      if (error.response.status === 401) {
+        return
+      }
+      dispatch({
+        type: DELETE_TASK_ERROR,
+        payload: { msg: error.response.data.message },
+      })
+    }
+    hideAlert()
+  }
 
   const getJobs = async () => {
     const {
@@ -382,6 +400,7 @@ const AppProvider = ({ children }) => {
         changePage,
         createTask,
         getTasks,
+        deleteTask,
       }}
     >
       {children}

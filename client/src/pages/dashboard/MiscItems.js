@@ -1,6 +1,5 @@
 import Calculator from '../../components/Calculator'
 import CreateTodoList from '../../components/CreateTodoList'
-import TodoList from '../../components/TodoList'
 
 const MiscItems = () => {
   return (
@@ -8,7 +7,6 @@ const MiscItems = () => {
       <Calculator />
       <br />
       <CreateTodoList />
-      <TodoList/>
     </>
   )
 }

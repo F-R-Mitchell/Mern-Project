@@ -1,6 +1,7 @@
-import { BadRequestError } from '../errors/index.js'
+import { BadRequestError, NotFoundError } from '../errors/index.js'
 import Tasks from '../models/Task.js'
 import { StatusCodes } from 'http-status-codes'
+import checkPermissions from '../utils/checkPermissions.js'
 
 export const createTask = async (req, res) => {
   const { taskName, taskDescription } = req.body
@@ -19,4 +20,19 @@ export const getAllTasks = async (req, res) => {
   let result = Tasks.find(queryObject)
   const tasks = await result
   res.status(StatusCodes.OK).json({ tasks })
+}
+
+export const deleteTask = async (req, res) => {
+  const { id: taskId } = req.params
+  const task = await Tasks.findOne({ _id: taskId })
+
+  if (!task) {
+    throw new NotFoundError(`Task ${taskId} not found`)
+  }
+  checkPermissions(req.user, task.createdBy)
+  const deletedTask = await Tasks.findOneAndDelete({ _id: taskId }, req.body, {
+    new: true,
+    runValidators: true,
+  })
+  res.status(StatusCodes.OK).json({ deletedTask, msg: 'Success! Task removed' })
 }

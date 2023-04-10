@@ -4,25 +4,45 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useAppContext } from '../context/appContext'
-import { useEffect } from 'react'
+import { Box, Divider, IconButton } from '@mui/material'
+
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
 
 const TodoList = () => {
-  const { getTasks, tasks } = useAppContext()
-  useEffect(() => {
-    getTasks()
-  }, [])
+  const { tasks, deleteTask } = useAppContext()
+
+  //
   return (
     <div>
-      {tasks.map((task) => {
+      {tasks.map((task, index) => {
         return (
           <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+              key={index}
             >
-              <Typography>{task.taskName}</Typography>
-            </AccordionSummary>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                sx={{ mr: 'auto' }}
+              >
+                <Typography>{task.taskName}</Typography>
+              </AccordionSummary>
+              <Divider orientation="vertical" variant="middle" flexItem />
+              <Box>
+                <IconButton onClick={() => alert('edit')}>
+                  <EditIcon />
+                </IconButton>
+                <IconButton onClick={() => deleteTask(task._id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+            </Box>
             <AccordionDetails>
               <Typography>{task.taskDescription}</Typography>
             </AccordionDetails>

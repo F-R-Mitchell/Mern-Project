@@ -1,23 +1,18 @@
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import Typography from '@mui/material/Typography'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import FormRow from './FormRow'
 import { useAppContext } from '../context/appContext'
 import Loading from './Loading'
+import TodoList from './TodoList'
+import { useEffect } from 'react'
 
-const TodoList = () => {
+const CreateTodoList = () => {
   const {
     taskName,
     taskDescription,
     createTask,
     getTasks,
     displayAlert,
-    isEditing,
     handleChange,
     isLoading,
-    tasks,
   } = useAppContext()
 
   const handleSubmit = (e) => {
@@ -27,10 +22,17 @@ const TodoList = () => {
       return
     }
     createTask()
+    getTasks()
   }
   const handleTaskInput = (e) => {
     handleChange({ name: e.target.name, value: e.target.value })
   }
+
+  useEffect(() => {
+    getTasks()
+  // eslint-disable-next-line
+  }, [])
+
   if (isLoading) {
     return (
       <div>
@@ -66,7 +68,8 @@ const TodoList = () => {
           </button>
         </div>
       </form>
+      <TodoList />
     </div>
   )
 }
-export default TodoList
+export default CreateTodoList
