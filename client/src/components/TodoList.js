@@ -31,7 +31,7 @@ const TodoList = () => {
                 id="panel1a-header"
                 sx={{ mr: 'auto' }}
               >
-                <Typography>{task.taskName}</Typography>
+                <Typography noWrap>{task.taskName}</Typography>
               </AccordionSummary>
               <Divider orientation="vertical" variant="middle" flexItem />
               <Box>
@@ -44,7 +44,9 @@ const TodoList = () => {
               </Box>
             </Box>
             <AccordionDetails>
-              <Typography>{task.taskDescription}</Typography>
+              <Typography style={{ wordWrap: 'break-word', maxWidth: '500px' }}>
+                {task.taskDescription}
+              </Typography>
             </AccordionDetails>
           </Accordion>
         )
