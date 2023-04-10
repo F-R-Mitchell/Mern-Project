@@ -3,6 +3,7 @@ import { useAppContext } from '../context/appContext'
 import Loading from './Loading'
 import TodoList from './TodoList'
 import { useEffect } from 'react'
+import { Button, Grid, InputAdornment, TextField } from '@mui/material'
 
 const CreateTodoList = () => {
   const {
@@ -30,7 +31,7 @@ const CreateTodoList = () => {
 
   useEffect(() => {
     getTasks()
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
 
   if (isLoading) {
@@ -42,30 +43,40 @@ const CreateTodoList = () => {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit} className="form">
+      <form className="form">
         <h4 className="text-3xl">Add Task</h4>
+        <br />
         <div className="form-center">
-          <FormRow
-            type="text"
-            labelText="Task Name"
-            name="taskName"
-            value={taskName}
-            handleChange={handleTaskInput}
-          />
-          <FormRow
-            type="text"
-            labelText="Task Description"
-            name="taskDescription"
-            value={taskDescription}
-            handleChange={handleTaskInput}
-          />
-          <button
-            className="btn btn-block submit-btn bg-[#2cb1bc]"
-            type="submit"
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Task Name"
+                multiline
+                maxRows={4}
+                name="taskName"
+                onChange={handleTaskInput}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Task Description"
+                multiline
+                maxRows={4}
+                name="taskDescription"
+                onChange={handleTaskInput}
+              />
+            </Grid>
+          </Grid>
+          <br />
+          <Button
+            variant="contained"
+            sx={{ color: 'white', backgroundColor: '#2cb1bc' }}
             onClick={handleSubmit}
           >
             Submit
-          </button>
+          </Button>
         </div>
       </form>
       <TodoList />
