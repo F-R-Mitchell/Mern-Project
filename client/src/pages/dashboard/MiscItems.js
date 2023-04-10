@@ -3,11 +3,17 @@ import CreateTodoList from '../../components/CreateTodoList'
 
 const MiscItems = () => {
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
       <Calculator />
-      <br />
+
       <CreateTodoList />
-    </>
+    </div>
   )
 }
 export default MiscItems
