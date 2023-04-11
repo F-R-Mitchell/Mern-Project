@@ -41,6 +41,7 @@ const TodoList = ({ _id, taskName, taskDescription, index }) => {
             </IconButton>
           </Box>
         </Box>
+        <Divider orientation="horizontal" variant="middle" flexItem />
         <AccordionDetails>
           <Typography style={{ wordWrap: 'break-word', maxWidth: '500px' }}>
             {taskDescription}
