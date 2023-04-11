@@ -22,9 +22,12 @@ export const getAllTasks = async (req, res) => {
   res.status(StatusCodes.OK).json({ tasks })
 }
 
-export const updateTask= async (req, res) => {
+export const updateTask = async (req, res) => {
   const { id: taskId } = req.params
   const { taskName, taskDescription } = req.body
+  req.body.taskName = req.body.taskName.trim()
+  req.body.taskDescription = req.body.taskDescription.trim()
+
   if (!taskName || !taskDescription) {
     throw new BadRequestError('Please provide all values')
   }
