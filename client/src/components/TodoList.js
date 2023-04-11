@@ -9,48 +9,44 @@ import { Box, Divider, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
-const TodoList = () => {
-  const { tasks, deleteTask } = useAppContext()
+const TodoList = ({ _id, taskName, taskDescription, index }) => {
+  const { deleteTask, setEditTask } = useAppContext()
 
   //
   return (
     <div>
-      {tasks.map((task, index) => {
-        return (
-          <Accordion>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-              key={index}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                sx={{ mr: 'auto' }}
-              >
-                <Typography noWrap>{task.taskName}</Typography>
-              </AccordionSummary>
-              <Divider orientation="vertical" variant="middle" flexItem />
-              <Box>
-                <IconButton onClick={() => alert('edit')}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton onClick={() => deleteTask(task._id)}>
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
-            </Box>
-            <AccordionDetails>
-              <Typography style={{ wordWrap: 'break-word', maxWidth: '500px' }}>
-                {task.taskDescription}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        )
-      })}
+      <Accordion>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+          key={index}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{ mr: 'auto' }}
+          >
+            <Typography noWrap>{taskName}</Typography>
+          </AccordionSummary>
+          <Divider orientation="vertical" variant="middle" flexItem />
+          <Box>
+            <IconButton onClick={() => setEditTask(_id)}>
+              <EditIcon />
+            </IconButton>
+            <IconButton onClick={() => deleteTask(_id)}>
+              <DeleteIcon />
+            </IconButton>
+          </Box>
+        </Box>
+        <AccordionDetails>
+          <Typography style={{ wordWrap: 'break-word', maxWidth: '500px' }}>
+            {taskDescription}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
     </div>
   )
 }

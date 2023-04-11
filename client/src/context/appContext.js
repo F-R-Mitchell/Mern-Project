@@ -17,6 +17,9 @@ import {
   EDIT_JOB_BEGIN,
   EDIT_JOB_ERROR,
   EDIT_JOB_SUCCESS,
+  EDIT_TASK_BEGIN,
+  EDIT_TASK_ERROR,
+  EDIT_TASK_SUCCESS,
   GET_CURRENT_USER_BEGIN,
   GET_CURRENT_USER_SUCCESS,
   GET_JOBS_BEGIN,
@@ -30,6 +33,7 @@ import {
   SETUP_USER_ERROR,
   SETUP_USER_SUCCESS,
   SET_EDIT_JOB,
+  SET_EDIT_TASK,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
   TOGGLE_SIDEBAR,
@@ -75,6 +79,7 @@ const initialState = {
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
   taskName: '',
   taskDescription: '',
+  editTaskId: '',
   tasks: [],
 }
 
@@ -233,6 +238,32 @@ const AppProvider = ({ children }) => {
       })
     } catch (error) {
       logoutUser()
+    }
+    hideAlert()
+  }
+  const setEditTask = (id) => {
+    dispatch({ type: SET_EDIT_TASK, payload: { id } })
+  }
+
+  const editTask = async () => {
+    dispatch({ type: EDIT_TASK_BEGIN })
+
+    try {
+      const { taskName, taskDescription } = state
+      await authFetch.patch(`/jobs/misc/${state.editTaskId}`, {
+        taskName,
+        taskDescription,
+      })
+      dispatch({ type: EDIT_TASK_SUCCESS })
+      dispatch({ type: CLEAR_VALUES })
+    } catch (error) {
+      if (error.response.status === 401) {
+        return
+      }
+      dispatch({
+        type: EDIT_TASK_ERROR,
+        payload: { msg: error.response.data.message },
+      })
     }
     hideAlert()
   }
@@ -401,6 +432,8 @@ const AppProvider = ({ children }) => {
         createTask,
         getTasks,
         deleteTask,
+        setEditTask,
+        editTask,
       }}
     >
       {children}

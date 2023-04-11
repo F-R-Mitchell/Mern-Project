@@ -16,6 +16,9 @@ import {
   EDIT_JOB_BEGIN,
   EDIT_JOB_ERROR,
   EDIT_JOB_SUCCESS,
+  EDIT_TASK_BEGIN,
+  EDIT_TASK_ERROR,
+  EDIT_TASK_SUCCESS,
   GET_CURRENT_USER_BEGIN,
   GET_CURRENT_USER_SUCCESS,
   GET_JOBS_BEGIN,
@@ -29,6 +32,7 @@ import {
   SETUP_USER_ERROR,
   SETUP_USER_SUCCESS,
   SET_EDIT_JOB,
+  SET_EDIT_TASK,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
   TOGGLE_SIDEBAR,
@@ -204,6 +208,42 @@ const reducer = (state, action) => {
       tasks: action.payload.tasks,
     }
   }
+
+  if (action.type === EDIT_TASK_BEGIN) {
+    return { ...state, isLoading: true }
+  }
+
+  if (action.type === EDIT_TASK_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'success',
+      alertText: `Task Update Successful!`,
+    }
+  }
+  if (action.type === EDIT_TASK_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
+  if (action.type === SET_EDIT_TASK) {
+    const task = state.tasks.find((task) => task._id === action.payload.id)
+    const { _id, taskName, taskDescription } = task
+    return {
+      ...state,
+      isEditing: true,
+      editTaskId: _id,
+      taskName,
+      taskDescription,
+    }
+  }
+
   if (action.type === DELETE_TASK_BEGIN) {
     return { ...state, isLoading: true }
   }

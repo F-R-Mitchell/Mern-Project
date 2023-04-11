@@ -22,6 +22,27 @@ export const getAllTasks = async (req, res) => {
   res.status(StatusCodes.OK).json({ tasks })
 }
 
+export const updateTask= async (req, res) => {
+  const { id: taskId } = req.params
+  const { taskName, taskDescription } = req.body
+  if (!taskName || !taskDescription) {
+    throw new BadRequestError('Please provide all values')
+  }
+
+  const task = await Tasks.findOne({ _id: taskId })
+  if (!task) {
+    throw new NotFoundError('Job not found')
+  }
+
+  checkPermissions(req.user, task.createdBy)
+
+  const updatedTask = await Tasks.findOneAndUpdate({ _id: taskId }, req.body, {
+    new: true,
+    runValidators: true,
+  })
+  res.status(StatusCodes.OK).json({ updatedTask })
+}
+
 export const deleteTask = async (req, res) => {
   const { id: taskId } = req.params
   const task = await Tasks.findOne({ _id: taskId })

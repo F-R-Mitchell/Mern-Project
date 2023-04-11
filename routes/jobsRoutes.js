@@ -12,6 +12,7 @@ import {
   createTask,
   deleteTask,
   getAllTasks,
+  updateTask,
 } from '../controllers/taskController.js'
 import authenticateUser from '../middleware/auth.js'
 import testUser from '../middleware/testUser.js'
@@ -23,6 +24,6 @@ jobsRouter.route('/stats').get(authenticateUser, showStats)
 jobsRouter.route('/:id').delete(testUser, deleteJob).patch(testUser, updateJob)
 
 jobsRouter.route('/misc').post(createTask).get(getAllTasks)
-jobsRouter.route('/misc/:id').delete(testUser, deleteTask)
+jobsRouter.route('/misc/:id').delete(testUser, deleteTask).patch(testUser, updateTask)
 
 export default jobsRouter
