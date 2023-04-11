@@ -18,6 +18,7 @@ const CreateTodoList = () => {
     editTask,
     showAlert,
     tasks,
+    handleClear,
   } = useAppContext()
 
   const handleSubmit = (e) => {
@@ -82,14 +83,43 @@ const CreateTodoList = () => {
             </Grid>
           </Grid>
           <br />
-          <Button
-            variant="contained"
-            sx={{ color: 'white', backgroundColor: '#2cb1bc' }}
-            onClick={handleSubmit}
-            type="button"
-          >
-            Submit
-          </Button>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Button
+                variant="contained"
+                sx={{
+                  color: 'white',
+                  backgroundColor: '#2cb1bc',
+                  '&:hover': {
+                    backgroundColor: '#0e7c86',
+                    color: 'white',
+                  },
+                }}
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                sx={{
+                  color: 'white',
+                  backgroundColor: '#e98d95',
+                  '&:hover': {
+                    backgroundColor: '#842029',
+                    color: 'white',
+                  },
+                }}
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleClear()
+                }}
+              >
+                Clear
+              </Button>
+            </Grid>
+          </Grid>
         </div>
       </form>
       {tasks.map((task, index) => {

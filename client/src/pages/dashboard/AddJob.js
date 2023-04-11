@@ -17,7 +17,7 @@ const AddJob = () => {
     status,
     statusOptions,
     handleChange,
-    handleClearJob,
+    handleClear,
     createJob,
     editJob,
   } = useAppContext()
@@ -99,7 +99,7 @@ const AddJob = () => {
               className="btn btn-block btn-danger"
               onClick={(e) => {
                 e.preventDefault()
-                handleClearJob()
+                handleClear()
               }}
             >
               Clear

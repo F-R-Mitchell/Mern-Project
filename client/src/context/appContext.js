@@ -174,7 +174,7 @@ const AppProvider = ({ children }) => {
     })
   }
 
-  const handleClearJob = () => {
+  const handleClear = () => {
     dispatch({
       type: CLEAR_VALUES,
     })
@@ -420,7 +420,7 @@ const AppProvider = ({ children }) => {
         logoutUser,
         updateUser,
         handleChange,
-        handleClearJob,
+        handleClear,
         createJob,
         getJobs,
         editJob,
