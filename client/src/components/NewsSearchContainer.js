@@ -1,8 +1,6 @@
-
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import Wrapper from '../assets/wrappers/SearchContainer'
 import { useAppContext } from '../context/appContext'
-import FormRow from './FormRow'
 import FormRowSelect from './FormRowSelect'
 const NewsSearchContainer = ({
   categorySearch,
@@ -10,7 +8,7 @@ const NewsSearchContainer = ({
   setCompanySearch,
   setCategorySearch,
 }) => {
-  const { handleChange, isLoading, clearFilters } = useAppContext()
+  const { handleChange, clearFilters } = useAppContext()
   const categoryOptions = [
     'general',
     'entertainment',
@@ -52,7 +50,7 @@ const NewsSearchContainer = ({
             handleChange={(e) => setCategorySearch(e.target.value)}
             list={categoryOptions}
           />
-          <FormRow
+          {/* <FormRow
             type="text"
             labelText="company search"
             name="companySearch"
@@ -65,7 +63,7 @@ const NewsSearchContainer = ({
             onClick={handleSubmit}
           >
             Clear
-          </button>
+          </button> */}
         </div>
       </form>
     </Wrapper>
