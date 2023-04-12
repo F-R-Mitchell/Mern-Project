@@ -23,7 +23,7 @@ jobsRouter.route('/stats').get(authenticateUser, showStats)
 
 jobsRouter.route('/:id').delete(testUser, deleteJob).patch(testUser, updateJob)
 
-jobsRouter.route('/misc').post(createTask).get(getAllTasks)
+jobsRouter.route('/misc').post(testUser, createTask).get(getAllTasks)
 jobsRouter.route('/misc/:id').delete(testUser, deleteTask).patch(testUser, updateTask)
 
 export default jobsRouter

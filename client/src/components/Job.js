@@ -37,7 +37,7 @@ const Job = ({
           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
           <JobInfo icon={<FaBriefcase />} text={jobType} />
           <JobInfo icon={<FaCalendarAlt />} text={date} />
-          <JobInfo icon={<FaDollarSign />} text={salary.toLocaleString()} />
+          <JobInfo icon={<FaDollarSign />} text={salary ? salary.toLocaleString(): ''} />
           <div className={`status ${status}`}>{status}</div>
         </div>
         <footer>
