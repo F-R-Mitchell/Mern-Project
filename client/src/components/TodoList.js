@@ -4,7 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useAppContext } from '../context/appContext'
-import { Box, Divider, IconButton } from '@mui/material'
+import { Box, Divider, Grid, IconButton } from '@mui/material'
 
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
@@ -14,7 +14,7 @@ const TodoList = ({ _id, taskName, taskDescription, index }) => {
 
   //
   return (
-    <div>
+    <Grid item xs={6}>
       <Accordion>
         <Box
           sx={{
@@ -48,7 +48,7 @@ const TodoList = ({ _id, taskName, taskDescription, index }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-    </div>
+    </Grid>
   )
 }
 export default TodoList

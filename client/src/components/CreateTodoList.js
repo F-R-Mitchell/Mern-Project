@@ -122,10 +122,11 @@ const CreateTodoList = () => {
           </Grid>
         </div>
       </form>
-
-      {tasks.map((task, index) => {
-        return <TodoList key={index} {...task} />
-      })}
+      <Grid container spacing={1} direction="column">
+        {tasks.map((task, index) => {
+          return <TodoList key={index} {...task} />
+        })}
+      </Grid>
     </div>
   )
 }
