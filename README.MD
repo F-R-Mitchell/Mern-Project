@@ -2,8 +2,6 @@
 
 #### Track Your Job Search
 
-Project in Action - [Jobify](https://www.jobify.live/)
-
 #### Run The App Locally
 
 ```sh
